@@ -1,5 +1,6 @@
 <?php
 
+use App\Pdf\WelcomePdf;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+$pdf = new WelcomePdf('Hello');
+
+Route::get('/', fn () => $pdf);
+Route::get('html', fn () => $pdf->toHtml());
